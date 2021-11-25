@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../components/Books.vue'
 
 Vue.use(VueRouter)
 
@@ -22,6 +22,31 @@ const routes = [
     path: '/genres',
     name: 'Genres',
     component: () => import(/* webpackChunkName: "genres" */ '../components/Genres.vue')
+  },
+  {
+    path: '/genre/edit',
+    name: 'GenresEdit',
+    component: () => import(/* webpackChunkName: "genreAddEdit" */ '../components/GenreAddEdit.vue')
+  },
+  {
+    path: '/authors',
+    name: 'Authors',
+    component: () => import(/* webpackChunkName: "authors" */ '../components/Authors.vue')
+  },
+  {
+    path: '/author/edit',
+    name: 'AuthorEdit',
+    component: () => import(/* webpackChunkName: "authorsEdit" */ '../components/AuthorAddEdit.vue')
+  },
+  {
+    path: '/book/comments',
+    name: 'BookComments',
+    component: () => import(/* webpackChunkName: "bookComments" */ '../components/BookComments.vue')
+  },
+  {
+    path: '/book/edit',
+    name: 'BookEdit',
+    component: () => import(/* webpackChunkName: "bookEdit" */ '../components/BookAddEdit.vue')
   }
 ]
 

@@ -3,34 +3,34 @@
     <b-container>
       <b-row>
         <b-col>
-          <h1>Genres</h1>
+          <h1>Authors</h1>
         </b-col>
       </b-row>
       <b-row>
         <b-col>
           <b-table striped bordered hover :fields="fields" :items="items">
             <template #cell(edit)="data">
-              <router-link id="edit-icon" :to="{ name: 'GenresEdit', params: { item: data.item} }">
+              <router-link id="edit-icon" :to="{ name: 'AuthorEdit', params: {item: data.item} }">
                 <b-icon icon="gear"  animation="spin" class="text-dark"></b-icon>
               </router-link>
               <b-tooltip target="edit-icon" triggers="hover">
-                Edit genre
-              </b-tooltip>
+                Edit author
+               </b-tooltip>
             </template>
             <template #cell(delete)="data">
-               <a id="delete-icon" href="">
+                <a id="delete-icon" href="">
                  <b-icon @click="delteItem(data.item.id)" icon="trash"  class="text-dark"></b-icon>
-               </a>
-               <b-tooltip target="delete-icon" triggers="hover">
-                Delete genre
-               </b-tooltip>
+                </a>
+                <b-tooltip target="delete-icon" triggers="hover">
+                 Delete author
+                </b-tooltip>
             </template>
           </b-table>
         </b-col>
       </b-row>
       <b-row>
         <b-col>
-          <router-link to='/genre/edit' class="text-dark"><b-button variant="primary">Add new</b-button></router-link>
+          <router-link to='/author/edit' class="text-dark"><b-button variant="primary">Add new</b-button></router-link>
         </b-col>
       </b-row>
     </b-container>
@@ -45,7 +45,7 @@ export default {
     return {
       fields: [
         { key: 'id', label: 'ID' },
-        { key: 'name', label: 'Genre Name' },
+        { key: 'name', label: 'Author Name' },
         { key: 'edit', label: '' },
         { key: 'delete', label: '' }
       ],
@@ -54,17 +54,17 @@ export default {
   },
   mounted () {
     axios
-      .get('/genres')
+      .get('/authors')
       .then(response => (this.items = response.data))
   },
   methods: {
     delteItem (itemId) {
-      axios.delete('/genre/' + itemId)
+      axios.delete('/author/' + itemId)
         .then(response => {})
         .catch(e => {
           this.errors.push(e)
         })
-      this.$router.push({ path: '/genres' })
+      this.$router.push({ path: '/authors' })
     }
   }
 }
